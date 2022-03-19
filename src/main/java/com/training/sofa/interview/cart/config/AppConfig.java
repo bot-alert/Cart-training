@@ -1,11 +1,11 @@
-package com.nespresso.sofa.interview.cart.config;
+package com.training.sofa.interview.cart.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.nespresso.sofa.interview.cart.services.CartService;
-import com.nespresso.sofa.interview.cart.services.CartStorage;
-import com.nespresso.sofa.interview.cart.services.PromotionEngine;
+import com.training.sofa.interview.cart.services.CartService;
+import com.training.sofa.interview.cart.services.CartStorage;
+import com.training.sofa.interview.cart.services.PromotionEngine;
 
 @Configuration
 public class AppConfig {

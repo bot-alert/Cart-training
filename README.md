@@ -21,17 +21,6 @@ Fix unit tests one by one with this proposed order :
 * PromotionServiceTest
 * IntegrationTest
 
-
-## How to submit 
-
-Fork the repository .
-
-Fix each of the tests.
-
-create a pull request to the repository .
-
-branch name should follow the following format feature/firstName_lastName (ex .: feature/younes_elhaiti)
-
 ### Submit tips 
 * Keep the commits small and meaningful
 * Continuous commits

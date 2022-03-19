@@ -1,10 +1,10 @@
-package com.nespresso.sofa.interview.cart.services;
+package com.training.sofa.interview.cart.services;
 
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.UUID;
 
-import com.nespresso.sofa.interview.cart.model.Cart;
+import com.training.sofa.interview.cart.model.Cart;
 
 public class CartStorage {
 

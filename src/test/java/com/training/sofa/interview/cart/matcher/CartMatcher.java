@@ -1,10 +1,10 @@
-package com.nespresso.sofa.interview.cart.matcher;
+package com.training.sofa.interview.cart.matcher;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
-import com.nespresso.sofa.interview.cart.model.Cart;
+import com.training.sofa.interview.cart.model.Cart;
 
 public class CartMatcher {
 

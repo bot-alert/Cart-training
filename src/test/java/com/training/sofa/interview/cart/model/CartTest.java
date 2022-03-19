@@ -1,7 +1,6 @@
-package com.nespresso.sofa.interview.cart.model;
+package com.training.sofa.interview.cart.model;
 
-import static com.nespresso.sofa.interview.cart.matcher.CartMatcher.containProduct;
-import static com.nespresso.sofa.interview.cart.matcher.CartMatcher.emptyCart;
+import static com.training.sofa.interview.cart.matcher.CartMatcher.containProduct;
 import static java.util.UUID.randomUUID;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -11,6 +10,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableMap;
+import com.training.sofa.interview.cart.matcher.CartMatcher;
 
 public class CartTest {
 
@@ -19,14 +19,14 @@ public class CartTest {
     @Test
     public void empty() {
         Cart c = new Cart();
-        assertThat(c, emptyCart());
+        assertThat(c, CartMatcher.emptyCart());
     }
 
     @Test
     public void product() {
         Map<String, Integer> products = ImmutableMap.<String, Integer>builder().put(productCode, 1).build();
         Cart cart = new Cart(products);
-        assertThat(cart, containProduct(productCode, 1));
+        assertThat(cart, CartMatcher.containProduct(productCode, 1));
     }
 
     @Test

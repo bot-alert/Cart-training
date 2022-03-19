@@ -1,6 +1,6 @@
-package com.nespresso.sofa.interview.cart.services;
+package com.training.sofa.interview.cart.services;
 
-import static com.nespresso.sofa.interview.cart.matcher.CartMatcher.containProduct;
+import static com.training.sofa.interview.cart.matcher.CartMatcher.containProduct;
 import static java.util.UUID.randomUUID;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
@@ -11,13 +11,16 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.util.UUID;
 
+import org.hamcrest.core.IsNot;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import com.nespresso.sofa.interview.cart.model.Cart;
+import com.training.sofa.interview.cart.model.Cart;
+import com.training.sofa.interview.cart.matcher.CartMatcher;
+
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -54,8 +57,8 @@ public class CartServiceTest {
         UUID cartId = randomUUID();
         boolean add = cartService.add(cartId, productOne, 10);
         assertThat(add, is(true));
-        assertThat(cartService.get(cartId), containProduct(productOne, 10));
-        assertThat(cartService.get(cartId), not(containProduct(PromotionEngineTest.PROMOTION)));
+        assertThat(cartService.get(cartId), CartMatcher.containProduct(productOne, 10));
+        assertThat(cartService.get(cartId), IsNot.not(CartMatcher.containProduct(PromotionEngineTest.PROMOTION)));
     }
 
     @Test
@@ -66,8 +69,8 @@ public class CartServiceTest {
         cartService.add(cartId, productOne, 0);
         add = cartService.add(cartId, productTwo, 0);
         assertThat(add, is(false));
-        assertThat(cartService.get(cartId), not(containProduct(productOne)));
-        assertThat(cartService.get(cartId), containProduct(productTwo, 1));
+        assertThat(cartService.get(cartId), IsNot.not(CartMatcher.containProduct(productOne)));
+        assertThat(cartService.get(cartId), CartMatcher.containProduct(productTwo, 1));
     }
 
     @Test
@@ -75,7 +78,7 @@ public class CartServiceTest {
         UUID cartId = randomUUID();
         boolean add = cartService.add(cartId, productOne, -1);
         assertThat(add, is(false));
-        assertThat(cartService.get(cartId), not(containProduct(productOne)));
+        assertThat(cartService.get(cartId), IsNot.not(CartMatcher.containProduct(productOne)));
     }
 
     @Test
@@ -83,8 +86,8 @@ public class CartServiceTest {
         UUID cartId = randomUUID();
         boolean add = cartService.set(cartId, productOne, 10);
         assertThat(add, is(true));
-        assertThat(cartService.get(cartId), containProduct(productOne, 10));
-        assertThat(cartService.get(cartId), not(containProduct(PromotionEngineTest.PROMOTION)));
+        assertThat(cartService.get(cartId), CartMatcher.containProduct(productOne, 10));
+        assertThat(cartService.get(cartId), IsNot.not(CartMatcher.containProduct(PromotionEngineTest.PROMOTION)));
     }
 
     @Test
@@ -92,7 +95,7 @@ public class CartServiceTest {
         UUID cartId = randomUUID();
         cartService.add(cartId, productTwo, 10);
         cartService.set(cartId, productTwo, 0);
-        assertThat(cartService.get(cartId), not(containProduct(productTwo)));
+        assertThat(cartService.get(cartId), IsNot.not(CartMatcher.containProduct(productTwo)));
     }
 
     @Test
@@ -101,7 +104,7 @@ public class CartServiceTest {
         boolean add = cartService.add(cartId, productOne, 10);
         cartService.add(cartId, productOne, 100);
         assertThat(add, is(true));
-        assertThat(cartService.get(cartId), containProduct(productOne, 110));
+        assertThat(cartService.get(cartId), CartMatcher.containProduct(productOne, 110));
     }
 
     @Test
@@ -109,10 +112,10 @@ public class CartServiceTest {
         UUID cartId = randomUUID();
         boolean add = cartService.set(cartId, productOne, 10);
         assertThat(add, is(true));
-        assertThat(cartService.get(cartId), containProduct(productOne, 10));
+        assertThat(cartService.get(cartId), CartMatcher.containProduct(productOne, 10));
         add = cartService.set(cartId, productOne, -20);
         assertThat(add, is(true));
-        assertThat(cartService.get(cartId), not(containProduct(productOne)));
+        assertThat(cartService.get(cartId), IsNot.not(CartMatcher.containProduct(productOne)));
     }
 
     @Test
@@ -124,7 +127,7 @@ public class CartServiceTest {
         assertThat(update, is(false));
         update = cartService.set(cartId, productOne, 1);
         assertThat(update, is(true));
-        assertThat(cartService.get(cartId), containProduct(productOne, 1));
+        assertThat(cartService.get(cartId), CartMatcher.containProduct(productOne, 1));
     }
 
     @Test
@@ -133,10 +136,10 @@ public class CartServiceTest {
         cartService.set(cartId, productOne, 10);
         boolean add = cartService.add(cartId, productOne, 10);
         assertThat(add, is(true));
-        assertThat(cartService.get(cartId), containProduct(productOne, 20));
+        assertThat(cartService.get(cartId), CartMatcher.containProduct(productOne, 20));
         boolean update = cartService.set(cartId, productOne, 20);
         assertThat(update, is(false));
-        assertThat(cartService.get(cartId), containProduct(productOne, 20));
+        assertThat(cartService.get(cartId), CartMatcher.containProduct(productOne, 20));
     }
 
     @Test

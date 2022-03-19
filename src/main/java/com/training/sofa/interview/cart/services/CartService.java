@@ -1,10 +1,10 @@
-package com.nespresso.sofa.interview.cart.services;
+package com.training.sofa.interview.cart.services;
 
 import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import com.nespresso.sofa.interview.cart.model.Cart;
+import com.training.sofa.interview.cart.model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class CartService {
@@ -14,7 +14,6 @@ public class CartService {
     @Autowired
     private CartStorage cartStorage;
 
-    Logger logger = Logger.getLogger(this.getClass().getName());
 
     /**
      * Add a quantity of a product to the cart and store the cart
@@ -47,7 +46,6 @@ public class CartService {
         if(isOperationSuccessful){
             Cart cartAfterPromotions = promotionEngine.apply(cart);
             cartStorage.saveCart(cartAfterPromotions);
-            logger.info("Product add: " + cartAfterPromotions.getProducts());
         }
 
         return isOperationSuccessful;
@@ -80,7 +78,6 @@ public class CartService {
 
         Cart cartAfterPromotions = promotionEngine.apply(cart);
         cartStorage.saveCart(cartAfterPromotions);
-        logger.info("Product set: " + cartAfterPromotions.getProducts());
         return true;
     }
 

@@ -1,9 +1,9 @@
-package com.nespresso.sofa.interview.cart.services;
+package com.training.sofa.interview.cart.services;
 
 
 import java.util.Map;
 
-import com.nespresso.sofa.interview.cart.model.Cart;
+import com.training.sofa.interview.cart.model.Cart;
 
 /**
  * If one or more product with code "1000" is purchase, ONE product with code 9000 is offer

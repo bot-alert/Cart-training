@@ -1,4 +1,4 @@
-package com.nespresso.sofa.interview.cart.model;
+package com.training.sofa.interview.cart.model;
 
 import static java.util.UUID.randomUUID;
 
